@@ -15,54 +15,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
+  <livewire:scripts />
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+  <div class="wrapper">
+
+      
+    @include('layouts.partials.navbar')
+    
+
+    @include('layouts.partials.sidebar')
+
+
+
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+      {{ $slot }}
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+      <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+      </div>
+    </aside>
+    <!-- /.control-sidebar -->
 
     
-  @include('layouts.partials.navbar')
-  
 
-  @include('layouts.partials.sidebar')
+    @include('layouts.partials.footer')
 
 
-
-
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-
-    @yield('content')
-
+    
   </div>
-  <!-- /.content-wrapper -->
+  <!-- ./wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
+  <!-- REQUIRED SCRIPTS -->
 
-  
+  <!-- jQuery -->
+  <script src=" {{  asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src=" {{  asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src=" {{  asset('backend/dist/js/adminlte.min.js') }}"></script>
 
-  @include('layouts.partials.footer')
-
-
-  
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src=" {{  asset('backend/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src=" {{  asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src=" {{  asset('backend/dist/js/adminlte.min.js') }}"></script>
+  <livewire:scripts />
 </body>
 </html>
