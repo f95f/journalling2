@@ -15,9 +15,24 @@
         </div>
     </div>
 
+    
 
   <div class="content">
     <div class="container-fluid">
+
+
+    @if(session()->has("message"))
+    <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between px-3" role="alert">
+        <span>
+            <strong class="mr-3">
+                <i class="fa fa-check-circle"></i>
+                Sucesso!
+            </strong> {{ session('message') }}
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    
 
       <div class="row mb-3 mx-1">
 
@@ -27,45 +42,29 @@
 
       <div class="row">
 
-        <div class="col-lg-3">
-
-          <div class="card">
+        @foreach($notes as $item)
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="card h-100">
             
-            <div class="card-header">
-
-
-
-
+                <div class="card-header">
+                    <span class="text-muted">#{{ $item->id }} |</span>
+                    <h3>{{ $item->noteTitle }}</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{ $item->noteContent }}</p>
+                </div>
+                <div class="card-footer d-flex gap-2 justify-content-end">
+                    <a role="button" wire:click.prevent="edit({{ $item->id }})">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <span class="text-muted mx-2">|</span>
+                    <a role="button">
+                        <i class="fa fa-trash text-danger"></i>
+                    </a>
+                </div>
             </div>
-
-
-            <div class="card-body">
-
-
-
-
-            </div>
-
-
-            <div class="card-footer d-flex gap-2 justify-content-end">
-
-                <a role="button">
-                    <i class="fa fa-edit"></i>
-                </a>
-
-                <span class="text-muted mx-2">|</span>
-
-                <a role="button">
-                    <i class="fa fa-trash text-danger"></i>
-                </a>
-
-
-            </div>
-
-          </div>
-
-
         </div>
+        @endforeach
         
       </div>
     </div>
@@ -82,7 +81,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Nota</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            @if( $isEditing )
+                <span>Atualizar Nota</span>
+            @else 
+                <span>Criar Nota</span>
+            @endif
+          </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
