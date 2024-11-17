@@ -12,6 +12,8 @@ class ListTasks extends Component
     }
 
     public function addTask() {
-        dd("Shit should work idk");
+        
+        $this->dispatchBrowserEvent('show-form');
+
     }
 }
